@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <title>暗棋</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="just-dark-chess.css">
+        <link rel="shortcut icon" href="icon.png" type="image/png">
+    </head>
+    <body>
+        
+        <div class="menu">
+            <input id="load_i" type="file" style="display: none;">
+
+            <button class="buttona">暗棋</button>
+            <button id="load" onclick="document.getElementById('load_i').click()" title="載入之前的遊戲狀態 (CTRL+O)">載入</button>
+            <button id="export" onclick="export_txt()" title="匯出目前的遊戲狀態 (CTRL+S)">匯出</button>
+            <button id="new" onclick="newgame()" title="開啟新的一局 (F2)">新遊戲</button>
+            <button id="history" onclick="popup(3)" title="查看記錄以從錯誤中學習 (CTRL+H)">記錄</button>
+            <p id="turn" style="position: relative; left: 50%; top: 50% ;transform: translateX(-220%); justify-self: center;">目前輪到：玩家1</p>
+            
+        </div>
+
+            <div class="area">
+                <div class="dead_list">
+                    <p class="dead" id="dl0"></p>
+                    <p class="dead" id="dl1"></p>
+                    <p class="dead" id="dl2"></p>
+                    <p class="dead" id="dl3"></p>
+                    <p class="dead" id="dl4"></p>
+                    <p class="dead" id="dl5"></p>
+                    <p class="dead" id="dl6"></p>
+                    <p class="dead" id="dl7"></p>
+                    <p class="dead" id="dl8"></p>
+                    <p class="dead" id="dl9"></p>
+                    <p class="dead" id="dl10"></p>
+                    <p class="dead" id="dl11"></p>
+                    <p class="dead" id="dl12"></p>
+                    <p class="dead" id="dl13"></p>
+                    <p class="dead" id="dl14"></p>
+                    <p class="dead" id="dl15"></p>
+                </div>
+
+                <div class="board">
+                    <div class="row">
+                        <div class="b" id="b00" onclick="press(0,0)"><li class="chess" id="00"></li></div>
+                        <div class="b" id="b01" onclick="press(0,1)"><li class="chess" id="01"></li></div>
+                        <div class="b" id="b02" onclick="press(0,2)"><li class="chess" id="02"></li></div>
+                        <div class="b" id="b03" onclick="press(0,3)"><li class="chess" id="03"></li></div>
+                        <div class="b" id="b04" onclick="press(0,4)"><li class="chess" id="04"></li></div>
+                        <div class="b" id="b05" onclick="press(0,5)"><li class="chess" id="05"></li></div>
+                        <div class="b" id="b06" onclick="press(0,6)"><li class="chess" id="06"></li></div>
+                        <div class="b" id="b07" onclick="press(0,7)"><li class="chess" id="07"></li></div>
+                    </div>
+                    <div class="row">
+                        <div class="b" id="b10" onclick="press(1,0)"><li class="chess" id="10"></li></div>
+                        <div class="b" id="b11" onclick="press(1,1)"><li class="chess" id="11"></li></div>
+                        <div class="b" id="b12" onclick="press(1,2)"><li class="chess" id="12"></li></div>
+                        <div class="b" id="b13" onclick="press(1,3)"><li class="chess" id="13"></li></div>
+                        <div class="b" id="b14" onclick="press(1,4)"><li class="chess" id="14"></li></div>
+                        <div class="b" id="b15" onclick="press(1,5)"><li class="chess" id="15"></li></div>
+                        <div class="b" id="b16" onclick="press(1,6)"><li class="chess" id="16"></li></div>
+                        <div class="b" id="b17" onclick="press(1,7)"><li class="chess" id="17"></li></div>
+                    </div>
+                    <div class="row">
+                        <div class="b" id="b20" onclick="press(2,0)"><li class="chess" id="20"></li></div>
+                        <div class="b" id="b21" onclick="press(2,1)"><li class="chess" id="21"></li></div>
+                        <div class="b" id="b22" onclick="press(2,2)"><li class="chess" id="22"></li></div>
+                        <div class="b" id="b23" onclick="press(2,3)"><li class="chess" id="23"></li></div>
+                        <div class="b" id="b24" onclick="press(2,4)"><li class="chess" id="24"></li></div>
+                        <div class="b" id="b25" onclick="press(2,5)"><li class="chess" id="25"></li></div>
+                        <div class="b" id="b26" onclick="press(2,6)"><li class="chess" id="26"></li></div>
+                        <div class="b" id="b27" onclick="press(2,7)"><li class="chess" id="27"></li></div>
+                    </div>
+                    <div class="row">
+                        <div class="b" id="b30" onclick="press(3,0)"><li class="chess" id="30"></li></div>
+                        <div class="b" id="b31" onclick="press(3,1)"><li class="chess" id="31"></li></div>
+                        <div class="b" id="b32" onclick="press(3,2)"><li class="chess" id="32"></li></div>
+                        <div class="b" id="b33" onclick="press(3,3)"><li class="chess" id="33"></li></div>
+                        <div class="b" id="b34" onclick="press(3,4)"><li class="chess" id="34"></li></div>
+                        <div class="b" id="b35" onclick="press(3,5)"><li class="chess" id="35"></li></div>
+                        <div class="b" id="b36" onclick="press(3,6)"><li class="chess" id="36"></li></div>
+                        <div class="b" id="b37" onclick="press(3,7)"><li class="chess" id="37"></li></div>
+                    </div>
+                </div>
+                
+                <div class="dead_list">
+                    <p class="dead" id="dr0"></p>
+                    <p class="dead" id="dr1"></p>
+                    <p class="dead" id="dr2"></p>
+                    <p class="dead" id="dr3"></p>
+                    <p class="dead" id="dr4"></p>
+                    <p class="dead" id="dr5"></p>
+                    <p class="dead" id="dr6"></p>
+                    <p class="dead" id="dr7"></p>
+                    <p class="dead" id="dr8"></p>
+                    <p class="dead" id="dr9"></p>
+                    <p class="dead" id="dr10"></p>
+                    <p class="dead" id="dr11"></p>
+                    <p class="dead" id="dr12"></p>
+                    <p class="dead" id="dr13"></p>
+                    <p class="dead" id="dr14"></p>
+                    <p class="dead" id="dr15"></p>
+                </div>
+            </div>
+
+        <div class="overlay" id="overlay" onclick="cpopup()"></div>
+        <div class="popup" id="popup">
+            <span class="close" onclick="cpopup()" title="關閉">×</span>
+            <h2 id="p_title">Popup Title</h2><br>
+            <!-- Page 1 (Import) -->
+            <p class="p1" id="p1_1">檔案名稱：</p>
+            <!-- Page 3 (History) -->
+            <p class="p3" id="p3_1" style="text-align: center;">◀ 目前輪到：玩家1 (左側)</p>
+            <!-- Preview board -->
+            <div class="board">
+                <div class="row">
+                    <li class="pchess" id="p00"></li>
+                    <li class="pchess" id="p01"></li>
+                    <li class="pchess" id="p02"></li>
+                    <li class="pchess" id="p03"></li>
+                    <li class="pchess" id="p04"></li>
+                    <li class="pchess" id="p05"></li>
+                    <li class="pchess" id="p06"></li>
+                    <li class="pchess" id="p07"></li>
+                </div>
+                <div class="row">
+                    <li class="pchess" id="p10"></li>
+                    <li class="pchess" id="p11"></li>
+                    <li class="pchess" id="p12"></li>
+                    <li class="pchess" id="p13"></li>
+                    <li class="pchess" id="p14"></li>
+                    <li class="pchess" id="p15"></li>
+                    <li class="pchess" id="p16"></li>
+                    <li class="pchess" id="p17"></li>
+                </div>
+                <div class="row">
+                    <li class="pchess" id="p20"></li>
+                    <li class="pchess" id="p21"></li>
+                    <li class="pchess" id="p22"></li>
+                    <li class="pchess" id="p23"></li>
+                    <li class="pchess" id="p24"></li>
+                    <li class="pchess" id="p25"></li>
+                    <li class="pchess" id="p26"></li>
+                    <li class="pchess" id="p27"></li>
+                </div>
+                <div class="row">
+                    <li class="pchess" id="p30"></li>
+                    <li class="pchess" id="p31"></li>
+                    <li class="pchess" id="p32"></li>
+                    <li class="pchess" id="p33"></li>
+                    <li class="pchess" id="p34"></li>
+                    <li class="pchess" id="p35"></li>
+                    <li class="pchess" id="p36"></li>
+                    <li class="pchess" id="p37"></li>
+                </div>
+            </div>
+            <!-- Page 1 (Import) -->
+            <button class="button buttonb p1" id="p1_load" onclick="load_txt_btn()">載入 (將清除目前遊戲數據)</button>
+            <!-- Page 3 (History) -->
+            <button class="button buttonc p3" id="p3_last" onclick="update_history('l')" title="上一步">◀</button>
+            <button class="button buttonb p3" id="p3_here" title="為使檔案紀錄具有連貫性，將會刪除此步之後的紀錄">載入此步 (將清除後續紀錄)</button>
+            <button class="button buttonc p3" id="p3_next" onclick="update_history('r')" title="下一步">▶</button>
+        </div>
+
+
+        <div class="popup" id="popup2">
+            <h2 style="place-items: center;">玩家1(黑)獲勝!</h2>
+            <br>
+            <p>遊戲時間：00:00:00:00</p>
+            <p>總步數：100</p>
+            <br>
+            <div>
+                <button onclick="popup(3)">遊戲紀錄</button>
+                <button onclick="newgame()">再玩一次</button>
+                <button onclick="cpopup()">離開</button>
+            </div> 
+        </div>
+
+
+        <!-- <div class="ctrl" id="ctrl">
+            <span style="cursor: grab; font-size: 3.5vh; user-select: none;">⁝⁝</span>
+            <button class="button" id="last" onclick="update_history('l')" title="上一步">◀</button>
+            <button class="button" id="here" title="為使檔案紀錄具有連貫性，將會刪除此步之後的紀錄">載入此步 (將清除後續紀錄)</button>
+            <button class="button" id="next" onclick="update_history('r')" title="下一步">▶</button>
+            <button class="button" id="next" onclick="cpopup()" title="關閉">×</button>
+
+        </div> -->
+
+
+
+        <div class="toast" id="toast">⚠️ 錯誤!</div>
+
+        <script src="just-dark-chess.js"></script>
+
+    </body>
+</html>

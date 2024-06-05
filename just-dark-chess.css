@@ -1,0 +1,250 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #2d2d2d;
+}
+
+h2{
+    color: #bbbbbb;
+    text-align: center;
+}
+
+h3{
+    color: #0077ee;
+}
+
+p, span{
+    color: #bbbbbb;
+    margin: 5px;
+    font-weight: bold;
+}
+
+li{
+    list-style: none;
+    display: grid;
+    place-items: center;
+    font-size: 15;
+    border: 3px solid;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.menu{
+    background-color: #1d1d1d;
+    display: flex;
+    padding: 5px;
+    /* place-content: center; */
+}
+
+button{
+    color: #ababab;
+    background-color: #1d1d1d;
+    border-radius: 5px;
+    border: 0px;
+    padding: 5px 10px;
+    font-size: larger;
+    transition-duration: 0.25s;
+    cursor: pointer;
+}
+
+button:hover{
+    color: #ffffff;
+    background-color: #aaaaaa75;
+}
+
+.buttona{
+    font-weight: bolder;
+    color: #ffffff;
+}
+
+.buttonb{
+    border: 1px solid #bbbbbb;
+    float: right;
+    margin-left: 10px;
+}
+
+.buttonc{
+    border: 1px solid #bbbbbb;
+    margin-left: 10px;
+}
+
+.area{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.board{
+    margin: 10px;
+    margin: auto;
+    padding: 2px;
+    background-color: #1d1d1d;
+    border-radius: 10px;
+    border: #666666 solid 2.5px;
+}
+
+.row{
+    display: flex;
+}
+
+/* b is chess background */
+.b{
+    border: 1px solid;
+    border-color: #2d2d2d;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.b:hover{
+    transition-duration: 0.25s;
+}
+
+.chess{
+    background-color: #666666;
+    color: #666666;
+    font-size: 5vh;
+    font-weight: bolder;
+    margin: 5px;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.pchess{
+    background-color: #666666;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 5px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.dead{
+    width: 25px;
+    font-size: 25px;
+    padding: 2px 6.3px;
+    border-radius: 50%;
+    position: relative;
+    left: 0%;
+    display: inline;
+}
+
+.dead_list{
+    margin: 10px;
+    height: 450px;
+    width: 110px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition-duration: 0.25s;
+}
+
+.popup {
+    border: 1px solid #bbbbbb;
+    background-color: #2d2d2d;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition-duration: 0.25s;
+    border-radius: 5px;
+    padding: 20px;
+    z-index: 2;
+}
+
+.close {
+    color: #bbbbbb;
+    float: right;
+    font-size: 30px;
+    font-weight: bolder;
+    cursor: pointer;
+    transition-duration: 0.25s;
+}
+
+.close:hover{
+    color: #ff0000;
+}
+
+.toast{
+    background-color: #444444;
+    color: #cccccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 15px 12px 10px;
+    border-radius: 25px;
+    z-index: 3;
+    /* show/hide animation */
+    opacity: 0;
+    transition: opacity 100ms ease-in-out;
+    /* shake animation */
+    animation: shake 0.25s ease-in-out;
+}
+
+.toast.show{
+    opacity: 1;
+}
+
+.ctrl{
+    background-color: #1d1d1d;
+    color: #cccccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 15px;
+    border-radius: 15px;
+    z-index: 3;
+    
+}
+
+
+@keyframes shake{
+    /* Toast message does S.H.M. lol */
+    0%, 25%, 50%, 75%, 100%{
+        transform: translateX(-50%);
+    }
+    12%, 62%{
+        transform: translateX(-60%);
+    }
+    37%, 87%{
+        transform: translateX(-40%);
+    }
+}
+
+
+@media (max-width: 700px){
+    .chess{
+        width: 10vw;
+        height: 10vw;
+    }
+}

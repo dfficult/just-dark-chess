@@ -1,2 +1,4 @@
-# just-dark-chess
-一個用Javascript寫成的暗棋遊戲
+# j這就只是暗棋
+just dark chess
+
+最新版本 -> [下載](https://github.com/dfficult/just-dark-chess/releases/latest)
